@@ -1,0 +1,18 @@
+actor: ApiTester
+step_decorators:
+  - \Codeception\Step\AsJson
+modules:
+    enabled:
+        - Symfony:
+              app_path: 'src'
+              environment: 'test'
+        - PhpBrowser:
+            url: 'http://localhost:8001/vending-machine'
+        - REST:
+              depends: PhpBrowser
+              part: Json
+        - Db:
+            dsn: 'mysql:host=127.0.0.1:8111;dbname=vending_machine_test_test'
+            user: 'root'
+            password: ''
+        - Asserts
